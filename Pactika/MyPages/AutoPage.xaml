@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pactika.MyPages"
         mc:Ignorable="d"
-        Title="Авторизация" Height="450" Width="350" IsEnabled="False" MinWidth="350" MinHeight="450" MaxHeight="450" MaxWidth="350">
+        Title="Авторизация" ResizeMode="NoResize" Height="450" Width="350">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -18,32 +18,33 @@
             <RowDefinition Height="141*" />
             <RowDefinition Height="262*"/>
             <RowDefinition Height="47*"/>
-
         </Grid.RowDefinitions>
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Image VerticalAlignment="Center" Source="Image/logo.png"/>
         </StackPanel>
+
         <TextBox x:Name="LoginTb" HorizontalAlignment="Center" Margin="0,60,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Background="#FF060753" Foreground="#FF939393" SelectionBrush="#FF03EBFD" FontWeight="Bold" FontSize="14">
             <TextBox.Effect>
                 <DropShadowEffect Color="Blue" BlurRadius="40"/>
             </TextBox.Effect>
-
         </TextBox>
-        <PasswordBox x:Name="Password" HorizontalAlignment="Center" Grid.Row="1"  VerticalAlignment="Center" Width="136" Background="#FF060753" Foreground="#FF939393" SelectionBrush="#FF03EBFD" FontWeight="Bold" FontSize="14">
+
+        <PasswordBox x:Name="Password" HorizontalAlignment="Center" Grid.Row="1"  VerticalAlignment="Center" Width="136" Background="#FF060753" Foreground="#FF939393" SelectionBrush="#FF03EBFD" FontWeight="Bold" FontSize="14" BorderBrush="#FFAAADB5">
             <PasswordBox.Effect>
                 <DropShadowEffect Color="Blue" BlurRadius="40"/>
             </PasswordBox.Effect>
 
         </PasswordBox>
-        <TextBlock HorizontalAlignment="Left" Margin="107,39,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top" Foreground="#FFB4B4B4" FontSize="14" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" Margin="107,95,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" Foreground="#FFB4B4B4" FontSize="14" FontWeight="Bold"/>
-        <CheckBox x:Name="RememberCh" Content="Запомнить меня" HorizontalAlignment="Center" Margin="0,151,0,0" Grid.Row="1" VerticalAlignment="Top" Width="136" Foreground="#FFACACAC" FontWeight="Bold" Background="{x:Null}">
+        <TextBlock HorizontalAlignment="Center" Margin="0,40,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top" Foreground="#FFB4B4B4" FontSize="14" FontWeight="Bold" Width="136"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,90,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" Foreground="#FFB4B4B4" FontSize="14" FontWeight="Bold" Width="138"/>
+        <CheckBox  x:Name="RememberCh" Content="Запомнить меня" HorizontalAlignment="Center" Margin="0,151,0,0" Grid.Row="1" VerticalAlignment="Top" Width="136" Foreground="#FFACACAC" FontWeight="Bold" Background="#FF878787">
             <CheckBox.BorderBrush>
-                <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                <SolidColorBrush Color="#FFDC0B0B" Opacity="0"/>
             </CheckBox.BorderBrush>
         </CheckBox>
-        <Button x:Name="EntranceBtn" Content="Вход" HorizontalAlignment="Left" Margin="104,183,0,0" Grid.Row="1" VerticalAlignment="Top" Width="139" Height="28" Background="#FF060753" FontWeight="Bold" BorderBrush="#FFABADB3" Foreground="#FFD1D1D1" FontSize="16"/>
-        <Button x:Name="RegisterBtn" Content="Регистрация" HorizontalAlignment="Left" Margin="104,225,0,0" Grid.Row="1" VerticalAlignment="Top" Width="139" Height="28" Background="#FF060753" FontWeight="Bold" BorderBrush="#FFABADB3" Foreground="#FFD1D1D1" FontSize="16" Grid.RowSpan="2"/>
+        <Button x:Name="EntranceBtn" Content="Вход" HorizontalAlignment="Left" Margin="104,183,0,0" Grid.Row="1" VerticalAlignment="Top" Width="139" Height="28" Background="#FF060753" FontWeight="Bold" BorderBrush="#FFABADB3" Foreground="#FFD1D1D1" FontSize="16" Click="EntranceBtn_Click" />
+        <Button x:Name="RegisterBtn" Content="Регистрация" HorizontalAlignment="Left" Margin="104,225,0,0" Grid.Row="1" VerticalAlignment="Top" Width="139" Height="28" Background="#FF060753" FontWeight="Bold" BorderBrush="#FFABADB3" Foreground="#FFD1D1D1" FontSize="16" Grid.RowSpan="2" Click="RegisterBtn_Click"/>
 
     </Grid>
 </Window>

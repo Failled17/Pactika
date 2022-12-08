@@ -18,12 +18,8 @@
         <EntityTypeShape EntityType="YYPractikaModel.Stage" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="YYPractikaModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YYPractikaModel.UnitMeasurement" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="YYPractikaModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="YYPractikaModel.FK_ProductCountry_Country" ManuallyRouted="false" />
-        <AssociationConnector Association="YYPractikaModel.FK_User_Gender" ManuallyRouted="false" />
         <AssociationConnector Association="YYPractikaModel.FK_Order_Stage" ManuallyRouted="false" />
-        <AssociationConnector Association="YYPractikaModel.FK_Order_User" ManuallyRouted="false" />
-        <AssociationConnector Association="YYPractikaModel.FK_Order_User1" ManuallyRouted="false" />
         <AssociationConnector Association="YYPractikaModel.FK_OrderProduct_Order" ManuallyRouted="false" />
         <AssociationConnector Association="YYPractikaModel.FK_OrderProduct_Product" ManuallyRouted="false" />
         <AssociationConnector Association="YYPractikaModel.FK_Product_UnitMeasurement" ManuallyRouted="false" />
@@ -31,7 +27,11 @@
         <AssociationConnector Association="YYPractikaModel.FK_ProductShipment_Product" ManuallyRouted="false" />
         <AssociationConnector Association="YYPractikaModel.FK_ProductShipment_Shipment" ManuallyRouted="false" />
         <AssociationConnector Association="YYPractikaModel.FK_Shipment_Provider" ManuallyRouted="false" />
-        <AssociationConnector Association="YYPractikaModel.FK_User_RolyID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="YYPractikaModel.User" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="YYPractikaModel.FK_User_Gender" />
+        <AssociationConnector Association="YYPractikaModel.FK_Order_User" />
+        <AssociationConnector Association="YYPractikaModel.FK_Order_User1" />
+        <AssociationConnector Association="YYPractikaModel.FK_User_RolyID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

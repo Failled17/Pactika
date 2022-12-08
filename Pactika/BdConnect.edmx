@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище YYPractikaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище YYPractikaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="id" />
@@ -352,8 +352,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="YYPractikaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -371,7 +370,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Gender" FromRole="Gender" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="YYPractikaModel.FK_User_Gender" FromRole="Gender" ToRole="User" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -383,10 +382,10 @@
           <Property Name="ExecutorID" Type="Int32" />
           <Property Name="StageID" Type="Int32" />
           <NavigationProperty Name="Stage" Relationship="Self.FK_Order_Stage" FromRole="Order" ToRole="Stage" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Order_User" FromRole="Order" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_Order_User1" FromRole="Order" ToRole="User" />
           <NavigationProperty Name="OrderProduct" Relationship="Self.FK_OrderProduct_Order" FromRole="Order" ToRole="OrderProduct" />
-        </EntityType>
+          <NavigationProperty Name="User" Relationship="YYPractikaModel.FK_Order_User" FromRole="Order" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="YYPractikaModel.FK_Order_User1" FromRole="Order" ToRole="User" />
+          </EntityType>
         <EntityType Name="OrderProduct">
           <Key>
             <PropertyRef Name="id" />
@@ -448,7 +447,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_RolyID" FromRole="RolyID" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="YYPractikaModel.FK_User_RolyID" FromRole="RolyID" ToRole="User" />
         </EntityType>
         <EntityType Name="Shipment">
           <Key>
@@ -487,25 +486,6 @@
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_UnitMeasurement" FromRole="UnitMeasurement" ToRole="Product" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="RolyId" Type="Int32" />
-          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="GenderID" Type="Int32" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Gender" Relationship="Self.FK_User_Gender" FromRole="User" ToRole="Gender" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_Order_User" FromRole="User" ToRole="Order" />
-          <NavigationProperty Name="Order1" Relationship="Self.FK_Order_User1" FromRole="User" ToRole="Order" />
-          <NavigationProperty Name="RolyID1" Relationship="Self.FK_User_RolyID" FromRole="User" ToRole="RolyID" />
-        </EntityType>
         <Association Name="FK_ProductCountry_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
           <End Role="ProductCountry" Type="Self.ProductCountry" Multiplicity="*" />
@@ -518,18 +498,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Gender">
-          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="GenderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Stage">
           <End Role="Stage" Type="Self.Stage" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -539,30 +507,6 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="StageID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_User1">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="ExecutorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -650,18 +594,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_RolyID">
-          <End Role="RolyID" Type="Self.RolyID" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RolyID">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="RolyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="YYPractikaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Country" EntityType="Self.Country" />
           <EntitySet Name="Gender" EntityType="Self.Gender" />
@@ -676,25 +608,12 @@
           <EntitySet Name="Stage" EntityType="Self.Stage" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="UnitMeasurement" EntityType="Self.UnitMeasurement" />
-          <EntitySet Name="User" EntityType="Self.User" />
           <AssociationSet Name="FK_ProductCountry_Country" Association="Self.FK_ProductCountry_Country">
             <End Role="Country" EntitySet="Country" />
             <End Role="ProductCountry" EntitySet="ProductCountry" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
-            <End Role="Gender" EntitySet="Gender" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Stage" Association="Self.FK_Order_Stage">
             <End Role="Stage" EntitySet="Stage" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_User1" Association="Self.FK_Order_User1">
-            <End Role="User" EntitySet="User" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderProduct_Order" Association="Self.FK_OrderProduct_Order">
@@ -725,12 +644,92 @@
             <End Role="Provider" EntitySet="Provider" />
             <End Role="Shipment" EntitySet="Shipment" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_RolyID" Association="Self.FK_User_RolyID">
+          <EntitySet Name="User" EntityType="YYPractikaModel.User" />
+          <AssociationSet Name="FK_User_Gender" Association="YYPractikaModel.FK_User_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="YYPractikaModel.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User1" Association="YYPractikaModel.FK_Order_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_RolyID" Association="YYPractikaModel.FK_User_RolyID">
             <End Role="RolyID" EntitySet="RolyID" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="RolyId" Type="Int32" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GenderID" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Gender" Relationship="YYPractikaModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
+          <NavigationProperty Name="Order" Relationship="YYPractikaModel.FK_Order_User" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="Order1" Relationship="YYPractikaModel.FK_Order_User1" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="RolyID1" Relationship="YYPractikaModel.FK_User_RolyID" FromRole="User" ToRole="RolyID" />
+        </EntityType>
+        <Association Name="FK_User_Gender">
+          <End Type="YYPractikaModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="YYPractikaModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Type="YYPractikaModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="YYPractikaModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User1">
+          <End Type="YYPractikaModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="YYPractikaModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ExecutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_RolyID">
+          <End Type="YYPractikaModel.RolyID" Role="RolyID" Multiplicity="0..1" />
+          <End Type="YYPractikaModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolyID">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RolyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -860,16 +859,16 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="YYPractikaModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="RolyId" ColumnName="RolyId" />
-                <ScalarProperty Name="login" ColumnName="login" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="RolyId" ColumnName="RolyId" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

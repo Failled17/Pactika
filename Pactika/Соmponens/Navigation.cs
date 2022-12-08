@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Pactika.MyPages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Pactika.Соmponens
 {
-
-    public class Connection
-    {
-        public static YYPractikaEntities db = new YYPractikaEntities();
-    }
+    
 }
+    
+    
+    
+

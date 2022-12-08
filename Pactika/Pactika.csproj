@@ -118,6 +118,7 @@
       <DependentUpon>BdConnect.tt</DependentUpon>
     </Compile>
     <Compile Include="Соmponens\Connection.cs" />
+    <Compile Include="Соmponens\Navigation.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
